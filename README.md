@@ -51,9 +51,136 @@ adb shell pm list packages
 
 ---
 
+## App overview
+
+Below is what each package does, grouped by category. Use this to decide what to keep before running the script. Uninstall syntax:
+
+```bash
+adb shell pm uninstall --user 0 <package_name>
+```
+
+### Sony Bloatware
+
+| App Name                    | Package Name                      | Purpose                           |
+| ---------------------------- | ---------------------------------- | ---------------------------------- |
+| Sony Video Frame Server     | `com.sony.dtv.videoframeserver`   | Frame rendering service           |
+| Sony Demo Mode              | `com.sony.dtv.demomode`           | TV demo mode                      |
+| Sony HbbTV Launcher         | `com.sony.dtv.hbbtvlauncher`      | HbbTV interface                   |
+| Sony iManual                | `com.sony.dtv.imanual`            | TV user manual                    |
+| Sony Smart Help             | `com.sony.dtv.smarthelp`          | Smart help service                |
+| Sony Reminder Service       | `com.sony.dtv.reminderservice`    | TV reminder service               |
+| Sony Discovery              | `com.sony.dtv.discovery`          | Content recommendation            |
+| Sony YouView                | `com.sony.dtv.youview`            | TV content aggregation            |
+| YouView Service Host        | `com.youview.tv.servicehost`      | Host for YouView service          |
+| Sony Multi-Screen Demo      | `com.sony.dtv.multiscreendemo`    | Multi-screen demo                 |
+| Sony Demo Support           | `com.sony.dtv.demosupport`        | Support for demo mode             |
+| Sony Home Network           | `com.sony.dtv.homenetwork`        | Home network service              |
+| Sony Interactive TV Utility | `com.sony.dtv.interactivetvutil`  | Interactive TV service            |
+| Sony Select                 | `com.sony.dtv.sonyselect`         | Sony content store                |
+| Sony Select Overlay         | `com.sony.dtv.sonyselect.overlay` | Sony content overlay              |
+| Samba TV                    | `tv.samba.ssm`                    | TV content recommendation service |
+
+### Sony System Services
+
+| App Name                    | Package Name                         | Purpose                   |
+| ---------------------------- | -------------------------------------- | --------------------------- |
+| Sony BraviaSync Setting     | `com.sony.dtv.braviasyncsetting`     | Bravia Sync configuration |
+| Sony BraviaSync Service     | `com.sony.dtv.braviasyncservice`     | Bravia Sync service       |
+| Sony Browser WebApp Runtime | `com.sony.dtv.browser.webappruntime` | Web app execution service |
+| RS232 Support               | `com.sony.dtv.b2b.rs232csupport`     | RS232 support             |
+| B2B service                 | `com.sony.dtv.b2b.vendorprotocol`    | Unknown b2b service       |
+| PiP service                 | `com.sony.dtv.seconddispsetting`     | PiP Service (TV)          |
+
+### Sony Enhanced Services
+
+| App Name          | Package Name                   | Purpose                |
+| ------------------ | -------------------------------- | ------------------------ |
+| Sony Pro Settings | `com.sony.dtv.b2b.prosettings` | PRO settings           |
+| Sony Hotel Mode   | `com.sony.dtv.b2b.hotelmode`   | PRO mode / Hotel mode  |
+| Sony Service Mode | `com.sony.dtv.servicemode`     | Developer service mode |
+
+### Sony Diagnostics Services
+
+| App Name                       | Package Name                          | Purpose                  |
+| -------------------------------- | ---------------------------------------- | --------------------------- |
+| Sony Log Level Settings Vendor | `com.sony.dtv.sonyloglevelsettingvnd` | Vendor logging settings  |
+| Sony Log Level Settings System | `com.sony.dtv.sonyloglevelsettingsys` | System logging settings  |
+| Sony Bug Report System         | `com.sony.dtv.sonybugreportsys`       | Bug report service       |
+| Sony Crash Report System       | `com.sony.dtv.system.crashlog`        | Crash report service     |
+| Sony Customer Support          | `com.sony.dtv.customersupport`        | Customer support service |
+| Sony DA Service                | `com.sony.dtv.da.service`             | Remote support           |
+
+### Sony Applications
+
+| App Name             | Package Name                    | Purpose             |
+| ---------------------- | ---------------------------------- | ---------------------- |
+| Vewd Browser         | `com.vewd.core.integration.dia` | Web browser         |
+| Sony Smart Media App | `com.sony.dtv.smartmediaapp`    | Media player        |
+| Sony OSAT Music      | `com.sony.dtv.osat.music`       | Music player        |
+| Sony Promos          | `com.sony.dtv.promos`           | Promotional content |
+| Screen Mirroring     | `screenmirroring.com`           | Mirroring service   |
+
+### Sony Television Services
+
+| App Name                        | Package Name                            | Purpose              |
+| ---------------------------------- | ------------------------------------------ | ----------------------- |
+| Sony TVX Launcher Title List    | `com.sony.dtv.tvxlauncher.titlelist`    | Recorded TV programs |
+| Sony TVX Launcher Program Guide | `com.sony.dtv.tvxlauncher.programguide` | TV program guide     |
+| Sony TVX                        | `com.sony.dtv.tvx`                      | TV core service      |
+
+### Accessibility Services
+
+| App Name                | Package Name                                 | Purpose                |
+| -------------------------- | ----------------------------------------------- | ------------------------- |
+| Sony Accessibility Text | `com.sony.dtv.common.base.AccessibilityText` | Accessibility settings |
+| Google Text-to-Speech   | `com.google.android.tts`                     | Text-to-speech engine  |
+| Google Talkback         | `com.google.android.marvin.talkback`         | Accessibility service  |
+
+### Android Diagnostic Services
+
+| App Name                    | Package Name                            | Purpose                       |
+| ------------------------------ | ------------------------------------------ | -------------------------------- |
+| Google TV Bug Report Sender | `com.google.android.tv.bugreportsender` | Send TV bug reports to Google |
+| Google Feedback             | `com.google.android.feedback`           | Google feedback service       |
+
+### Android System Services
+
+| App Name                     | Package Name                               | Purpose                       |
+| ------------------------------- | --------------------------------------------- | -------------------------------- |
+| Captive Portal Login         | `com.android.captiveportallogin`           | Network captive portal        |
+| VPN Dialogs                  | `com.android.vpndialogs`                   | VPN configuration             |
+| Android Location Fused       | `com.android.location.fused`               | Location services             |
+| Google Backup Transport      | `com.google.android.backuptransport`       | Backup data to Google         |
+| Print Spooler                | `com.android.printspooler`                 | Print management service      |
+| Google Backdrop              | `com.google.android.backdrop`              | Picture frame service         |
+| Google SSS Authbridge        | `com.google.android.sss.authbridge`        | Google authentication bridge  |
+| Google Tungsten Setup Wraith | `com.google.android.tungsten.setupwraith`  | TV setup wizard               |
+| Google Webview               | `com.google.android.webview`               | Web rendering engine          |
+| Google Contacts Sync         | `com.google.android.syncadapters.contacts` | Sync contacts with Google     |
+| Google Calendar Sync         | `com.google.android.syncadapters.calendar` | Sync calendar with Google     |
+| Google Search (Katniss)      | `com.google.android.katniss`               | Google search integration     |
+| Contacts Provider            | `com.android.providers.contacts`           | Manage and store contacts     |
+| Calendar Provider            | `com.android.providers.calendar`           | Calendar data provider        |
+| Google TV Recommendations    | `com.google.android.tvrecommendations`     | Google TV content suggestions |
+| Settings Intelligence        | `com.android.settings.intelligence`        | Google smart settings         |
+| Android Dreams Basic         | `com.android.dreams.basic`                 | Screen saver service          |
+| User Dictionary Provider     | `com.android.providers.userdictionary`     | Personal dictionary           |
+| Android Wallpaper Backup     | `com.android.wallpaperbackup`              | Wallpaper backup service      |
+
+### Google Applications
+
+| App Name             | Package Name                      | Purpose                      |
+| ---------------------- | ------------------------------------ | ------------------------------- |
+| Google Play Games    | `com.google.android.play.games`   | Google Play Games service    |
+| Google Play Movies   | `com.google.android.videos`       | Google movie service         |
+| Google Partner Setup | `com.google.android.partnersetup` | Google partner configuration |
+
+---
+
 ## Uninstall script
 
-Removes Sony and Google bloatware packages for the current user. Apps can be reinstalled later with `adb shell cmd package install-existing <package_name>`.
+Removes all Sony and Google bloatware packages listed above for the current user.  
+Apps can be reinstalled later with `adb shell cmd package install-existing <package_name>`.
 
 ### Windows (cmd)
 
