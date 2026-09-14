@@ -5,11 +5,15 @@ Guide to remove bloatware and speed up a Sony Bravia Android TV via ADB. The TV 
 ![My Local Image](./images/screenshot1.png "Example Image")
 ![My Local Image](./images/screenshot.png "Example Image")
 
+---
+
 ## Requirements
 
 - Sony Bravia Android TV (tested on Android 9)
 - ADB installed on your computer
 - TV and computer on the same network
+
+---
 
 ## Setup
 
@@ -44,6 +48,8 @@ List installed packages, if you want to check what's on the TV first:
 ```bash
 adb shell pm list packages
 ```
+
+---
 
 ## Uninstall script
 
@@ -205,6 +211,8 @@ for p in "${packages[@]}"; do
 done
 ```
 
+---
+
 ## Disable instead of uninstall
 
 For apps you may want to keep but hidden, so they cannot be re-enabled from the TV itself:
@@ -214,6 +222,8 @@ adb shell pm disable-user --user 0 com.google.android.apps.mediashell
 adb shell pm disable-user --user 0 com.android.vending
 adb shell pm disable-user --user 0 com.google.android.gms
 ```
+
+---
 
 ## Launcher cleanup
 
@@ -225,6 +235,8 @@ adb shell settings put secure tv_home_promotion_tile_enabled 0
 adb shell pm clear com.google.android.tvlauncher
 ```
 
+---
+
 ## Performance tweaks
 
 ```bash
@@ -235,6 +247,8 @@ adb shell settings put global transition_animation_scale 0.5
 adb shell settings put global animator_duration_scale 0.5
 adb shell pm trim-caches 999999G
 ```
+
+---
 
 ## Reverting
 
