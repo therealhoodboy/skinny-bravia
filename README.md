@@ -50,12 +50,12 @@ This guide will help you effectively remove unnecessary apps and services ("bloa
 ### Enable Developer Options
 
 - Navigate to: `Settings → Device Preferences → About`
-- Tap `Build Number` **7 times** until it shows **Developer Mode Enabled**
+- Tap `Build Number` (on some models it is instead called `Android TV OS build`) **7 times** until it shows **Developer Mode Enabled**
 
 ### Enable ADB Debugging
 
-- Navigate to: `Settings → Device Preferences → Developer Options`
-- Turn on **Network Debugging**
+- Navigate to: `Settings → Device Preferences → Developer Options` (On some models it's `Settings → System → Developer Options` instead).
+- Turn on **Network Debugging** (or simply `ADB debugging` if you don't see that option).
 
 ---
 
@@ -213,74 +213,159 @@ adb shell pm uninstall --user 0 <package_name>
 
 ## 🚫 Script for all apps above
 
+### Windows (cmd)
+
+Save as `debloat.bat` and run it, or paste it into a cmd window where `adb.exe` is.
+
+```bat
+@echo off
+for %%p in (
+    com.sony.dtv.videoframeserver
+    com.android.dreams.basic
+    com.google.android.backdrop
+    screenmirroring.com
+    com.sony.dtv.braviasyncsetting
+    com.sony.dtv.braviasyncservice
+    com.android.captiveportallogin
+    com.sony.dtv.customersupport
+    com.sony.dtv.demomode
+    com.sony.dtv.multiscreendemo
+    com.sony.dtv.demosupport
+    com.android.printspooler
+    com.sony.dtv.reminderservice
+    com.sony.dtv.da.service
+    com.google.android.backuptransport
+    com.google.android.play.games
+    com.sony.dtv.hbbtvlauncher
+    com.sony.dtv.imanual
+    com.sony.dtv.smarthelp
+    com.sony.dtv.homenetwork
+    com.sony.dtv.interactivetvutil
+    com.android.location.fused
+    com.sony.dtv.tvxlauncher.titlelist
+    com.sony.dtv.smartmediaapp
+    com.sony.dtv.osat.music
+    com.sony.dtv.b2b.hotelmode
+    com.sony.dtv.tvxlauncher.programguide
+    com.sony.dtv.b2b.prosettings
+    com.sony.dtv.sonyselect
+    com.sony.dtv.common.base.AccessibilityText
+    com.sony.dtv.tvx
+    com.sony.dtv.discovery
+    com.sony.dtv.youview
+    com.sony.dtv.promos
+    com.youview.tv.servicehost
+    com.sony.dtv.browser.webappruntime
+    com.android.vpndialogs
+    com.sony.dtv.sonyloglevelsettingvnd
+    com.sony.dtv.sonyloglevelsettingsys
+    com.sony.dtv.sonybugreportsys
+    com.google.android.tungsten.setupwraith
+    com.android.settings.intelligence
+    com.sony.dtv.servicemode
+    com.google.android.sss.authbridge
+    tv.samba.ssm
+    com.android.providers.userdictionary
+    com.google.android.feedback
+    com.android.providers.contacts
+    com.android.providers.calendar
+    com.vewd.core.integration.dia
+    com.google.android.syncadapters.contacts
+    com.google.android.tts
+    com.google.android.videos
+    com.google.android.partnersetup
+    com.google.android.syncadapters.calendar
+    com.google.android.katniss
+    com.google.android.tv.bugreportsender
+    com.google.android.tvrecommendations
+    com.google.android.webview
+    com.google.android.marvin.talkback
+    com.sony.dtv.sonyselect.overlay
+    com.sony.dtv.system.crashlog
+    com.sony.dtv.b2b.rs232csupport
+    com.sony.dtv.b2b.vendorprotocol
+    com.sony.dtv.seconddispsetting
+    com.android.wallpaperbackup
+) do adb shell pm uninstall --user 0 %%p
+```
+
+### Linux / macOS (bash)
+
+Save as debloat.sh, chmod +x debloat.sh, then run.
 ```bash
-adb shell pm uninstall --user 0 com.sony.dtv.videoframeserver
-adb shell pm uninstall --user 0 com.android.dreams.basic
-adb shell pm uninstall --user 0 com.google.android.backdrop
-adb shell pm uninstall --user 0 screenmirroring.com
-adb shell pm uninstall --user 0 com.sony.dtv.braviasyncsetting
-adb shell pm uninstall --user 0 com.sony.dtv.braviasyncservice
-adb shell pm uninstall --user 0 com.android.captiveportallogin
-adb shell pm uninstall --user 0 com.sony.dtv.customersupport
-adb shell pm uninstall --user 0 com.sony.dtv.demomode
-adb shell pm uninstall --user 0 com.sony.dtv.multiscreendemo
-adb shell pm uninstall --user 0 com.sony.dtv.demosupport
-adb shell pm uninstall --user 0 com.android.printspooler
-adb shell pm uninstall --user 0 com.sony.dtv.reminderservice
-adb shell pm uninstall --user 0 com.sony.dtv.da.service
-adb shell pm uninstall --user 0 com.google.android.backuptransport
-adb shell pm uninstall --user 0 com.google.android.play.games
-adb shell pm uninstall --user 0 com.sony.dtv.hbbtvlauncher
-adb shell pm uninstall --user 0 com.sony.dtv.imanual
-adb shell pm uninstall --user 0 com.sony.dtv.smarthelp
-adb shell pm uninstall --user 0 com.sony.dtv.homenetwork
-adb shell pm uninstall --user 0 com.sony.dtv.interactivetvutil
-adb shell pm uninstall --user 0 com.android.location.fused
-adb shell pm uninstall --user 0 com.sony.dtv.tvxlauncher.titlelist
-adb shell pm uninstall --user 0 com.sony.dtv.smartmediaapp
-adb shell pm uninstall --user 0 com.sony.dtv.osat.music
-adb shell pm uninstall --user 0 com.sony.dtv.b2b.hotelmode
-adb shell pm uninstall --user 0 com.sony.dtv.tvxlauncher.programguide
-adb shell pm uninstall --user 0 com.sony.dtv.b2b.prosettings
-adb shell pm uninstall --user 0 com.sony.dtv.sonyselect
-adb shell pm uninstall --user 0 com.sony.dtv.common.base.AccessibilityText
-adb shell pm uninstall --user 0 com.sony.dtv.tvx
-adb shell pm uninstall --user 0 com.sony.dtv.discovery
-adb shell pm uninstall --user 0 com.sony.dtv.youview
-adb shell pm uninstall --user 0 com.sony.dtv.promos
-adb shell pm uninstall --user 0 com.youview.tv.servicehost
-adb shell pm uninstall --user 0 com.sony.dtv.browser.webappruntime
-adb shell pm uninstall --user 0 com.android.vpndialogs
-adb shell pm uninstall --user 0 com.sony.dtv.sonyloglevelsettingvnd
-adb shell pm uninstall --user 0 com.sony.dtv.sonyloglevelsettingsys
-adb shell pm uninstall --user 0 com.sony.dtv.sonybugreportsys
-adb shell pm uninstall --user 0 com.google.android.tungsten.setupwraith
-adb shell pm uninstall --user 0 com.android.settings.intelligence
-adb shell pm uninstall --user 0 com.sony.dtv.servicemode
-adb shell pm uninstall --user 0 com.google.android.sss.authbridge
-adb shell pm uninstall --user 0 tv.samba.ssm
-adb shell pm uninstall --user 0 com.android.providers.userdictionary
-adb shell pm uninstall --user 0 com.google.android.feedback
-adb shell pm uninstall --user 0 com.android.providers.contacts
-adb shell pm uninstall --user 0 com.android.providers.calendar
-adb shell pm uninstall --user 0 com.vewd.core.integration.dia
-adb shell pm uninstall --user 0 com.google.android.syncadapters.contacts
-adb shell pm uninstall --user 0 com.google.android.tts
-adb shell pm uninstall --user 0 com.google.android.videos
-adb shell pm uninstall --user 0 com.google.android.partnersetup
-adb shell pm uninstall --user 0 com.google.android.syncadapters.calendar
-adb shell pm uninstall --user 0 com.google.android.katniss
-adb shell pm uninstall --user 0 com.google.android.tv.bugreportsender
-adb shell pm uninstall --user 0 com.google.android.tvrecommendations
-adb shell pm uninstall --user 0 com.google.android.webview
-adb shell pm uninstall --user 0 com.google.android.marvin.talkback
-adb shell pm uninstall --user 0 com.sony.dtv.sonyselect.overlay
-adb shell pm uninstall --user 0 com.google.android.partnersetup
-adb shell pm uninstall --user 0 com.sony.dtv.system.crashlog
-adb shell pm uninstall --user 0 com.sony.dtv.b2b.rs232csupport
-adb shell pm uninstall --user 0 com.sony.dtv.b2b.vendorprotocol
-adb shell pm uninstall --user 0 com.sony.dtv.seconddispsetting
-adb shell pm uninstall --user 0 com.android.wallpaperbackup
+#!/bin/bash
+packages=(
+    com.sony.dtv.videoframeserver
+    com.android.dreams.basic
+    com.google.android.backdrop
+    screenmirroring.com
+    com.sony.dtv.braviasyncsetting
+    com.sony.dtv.braviasyncservice
+    com.android.captiveportallogin
+    com.sony.dtv.customersupport
+    com.sony.dtv.demomode
+    com.sony.dtv.multiscreendemo
+    com.sony.dtv.demosupport
+    com.android.printspooler
+    com.sony.dtv.reminderservice
+    com.sony.dtv.da.service
+    com.google.android.backuptransport
+    com.google.android.play.games
+    com.sony.dtv.hbbtvlauncher
+    com.sony.dtv.imanual
+    com.sony.dtv.smarthelp
+    com.sony.dtv.homenetwork
+    com.sony.dtv.interactivetvutil
+    com.android.location.fused
+    com.sony.dtv.tvxlauncher.titlelist
+    com.sony.dtv.smartmediaapp
+    com.sony.dtv.osat.music
+    com.sony.dtv.b2b.hotelmode
+    com.sony.dtv.tvxlauncher.programguide
+    com.sony.dtv.b2b.prosettings
+    com.sony.dtv.sonyselect
+    com.sony.dtv.common.base.AccessibilityText
+    com.sony.dtv.tvx
+    com.sony.dtv.discovery
+    com.sony.dtv.youview
+    com.sony.dtv.promos
+    com.youview.tv.servicehost
+    com.sony.dtv.browser.webappruntime
+    com.android.vpndialogs
+    com.sony.dtv.sonyloglevelsettingvnd
+    com.sony.dtv.sonyloglevelsettingsys
+    com.sony.dtv.sonybugreportsys
+    com.google.android.tungsten.setupwraith
+    com.android.settings.intelligence
+    com.sony.dtv.servicemode
+    com.google.android.sss.authbridge
+    tv.samba.ssm
+    com.android.providers.userdictionary
+    com.google.android.feedback
+    com.android.providers.contacts
+    com.android.providers.calendar
+    com.vewd.core.integration.dia
+    com.google.android.syncadapters.contacts
+    com.google.android.tts
+    com.google.android.videos
+    com.google.android.partnersetup
+    com.google.android.syncadapters.calendar
+    com.google.android.katniss
+    com.google.android.tv.bugreportsender
+    com.google.android.tvrecommendations
+    com.google.android.webview
+    com.google.android.marvin.talkback
+    com.sony.dtv.sonyselect.overlay
+    com.sony.dtv.system.crashlog
+    com.sony.dtv.b2b.rs232csupport
+    com.sony.dtv.b2b.vendorprotocol
+    com.sony.dtv.seconddispsetting
+    com.android.wallpaperbackup
+)
+
+for p in "${packages[@]}"; do
+    adb shell pm uninstall --user 0 "$p"
+done
 ```
 
 ## ➡️ Disable apps
