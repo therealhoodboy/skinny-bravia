@@ -1,85 +1,49 @@
-# 🛠️ Sony Bravia TV Debloating & Performance Optimization
+# Sony Bravia TV Debloating
 
-This guide will help you effectively remove unnecessary apps and services ("bloatware") from your Sony Bravia Android TV, significantly improving system performance. After completing the debloating process, your TV will remain fully functional with installed apps, though some built-in features like standard TV channels and accessibility services might be impacted. Carefully review each step to avoid disabling functions you require.
-
----
-
-## ✅ Goals
-
-- Remove unnecessary background processes
-- Free up RAM for better performance
-- Achieve a clean, distraction-free user experience
-
----
-
-## 🏆 Benefits
-
-- Faster application load times
-- Enhanced UI responsiveness
-- Reduced CPU and network usage
-- Ad-free and clutter-free launcher
+Guide to remove bloatware and speed up a Sony Bravia Android TV via ADB. The TV stays functional, but some built-in features (live TV channels, some accessibility services) may be affected. Review the package list before running.
 
 ![My Local Image](./images/screenshot1.png "Example Image")
 ![My Local Image](./images/screenshot.png "Example Image")
 
 ---
 
-## 📋 Table of Contents
+## Requirements
 
-1. [Requirements](#requirements)
-2. [Preparation](#preparation)
-3. [Setting Up ADB](#setting-up-adb)
-4. [Identifying & Removing Bloatware](#identifying--removing-bloatware)
-5. [Customizing the Launcher](#customizing-the-launcher)
-6. [Optimizing System Performance](#optimizing-system-performance)
-7. [Troubleshooting & Reverting Changes](#troubleshooting--reverting-changes)
+- Sony Bravia Android TV (tested on Android 9)
+- ADB installed on your computer
+- TV and computer on the same network
 
 ---
 
-## 🔎 Requirements
+## Setup
 
-- Sony Bravia Android TV (tested on Android 9 Pie)
-- Active network connection (Wi-Fi or LAN)
-- Computer with ADB installed
-- Basic familiarity with command-line operations
+Enable Developer Options:
 
----
+- Navigate to: `Settings > Device Preferences > About`
+- Tap `Build Number` (on some models it is instead called `Android TV OS build`) 7 times until it shows Developer Mode Enabled
 
-## 🚀 Preparation
+Enable ADB Debugging:
 
-### Enable Developer Options
+- Navigate to: `Settings > Device Preferences > Developer Options` (on some models it's `Settings > System > Developer Options` instead)
+- Turn on Network Debugging (or simply `ADB debugging` if you don't see that option)
 
-- Navigate to: `Settings → Device Preferences → About`
-- Tap `Build Number` (on some models it is instead called `Android TV OS build`) **7 times** until it shows **Developer Mode Enabled**
+Install ADB:
 
-### Enable ADB Debugging
+```bash
+# Windows: download from https://developer.android.com/studio/releases/platform-tools
+# macOS
+brew install android-platform-tools
+# Linux
+sudo apt-get install android-tools-adb
+```
 
-- Navigate to: `Settings → Device Preferences → Developer Options` (On some models it's `Settings → System → Developer Options` instead).
-- Turn on **Network Debugging** (or simply `ADB debugging` if you don't see that option).
-
----
-
-## 🌐 Setting Up ADB
-
-### Install ADB on your computer
-
-- **Windows:** Download [Android Platform Tools](https://developer.android.com/studio/releases/platform-tools)
-- **macOS:**
-  ```bash
-  brew install android-platform-tools
-  ```
-- **Linux:**
-  ```bash
-  sudo apt-get install android-tools-adb
-  ```
-
-### Connect to your TV via ADB
+Connect:
 
 ```bash
 adb connect <TV_IP_ADDRESS>
 ```
 
-### List installed apps
+List installed packages, if you want to check what's on the TV first:
 
 ```bash
 adb shell pm list packages
@@ -87,9 +51,9 @@ adb shell pm list packages
 
 ---
 
-## 🔥 Identifying & Removing Bloatware
+## App overview
 
-Below are recommended apps to remove. Use the following command structure to uninstall apps safely:
+Below is what each package does, grouped by category. Use this to decide what to keep before running the script. Uninstall syntax:
 
 ```bash
 adb shell pm uninstall --user 0 <package_name>
@@ -98,7 +62,7 @@ adb shell pm uninstall --user 0 <package_name>
 ### Sony Bloatware
 
 | App Name                    | Package Name                      | Purpose                           |
-| --------------------------- | --------------------------------- | --------------------------------- |
+| ---------------------------- | ---------------------------------- | ---------------------------------- |
 | Sony Video Frame Server     | `com.sony.dtv.videoframeserver`   | Frame rendering service           |
 | Sony Demo Mode              | `com.sony.dtv.demomode`           | TV demo mode                      |
 | Sony HbbTV Launcher         | `com.sony.dtv.hbbtvlauncher`      | HbbTV interface                   |
@@ -119,7 +83,7 @@ adb shell pm uninstall --user 0 <package_name>
 ### Sony System Services
 
 | App Name                    | Package Name                         | Purpose                   |
-| --------------------------- | ------------------------------------ | ------------------------- |
+| ---------------------------- | -------------------------------------- | --------------------------- |
 | Sony BraviaSync Setting     | `com.sony.dtv.braviasyncsetting`     | Bravia Sync configuration |
 | Sony BraviaSync Service     | `com.sony.dtv.braviasyncservice`     | Bravia Sync service       |
 | Sony Browser WebApp Runtime | `com.sony.dtv.browser.webappruntime` | Web app execution service |
@@ -130,15 +94,15 @@ adb shell pm uninstall --user 0 <package_name>
 ### Sony Enhanced Services
 
 | App Name          | Package Name                   | Purpose                |
-| ----------------- | ------------------------------ | ---------------------- |
+| ------------------ | -------------------------------- | ------------------------ |
 | Sony Pro Settings | `com.sony.dtv.b2b.prosettings` | PRO settings           |
-| Sony Hotel Mode   | `com.sony.dtv.b2b.hotelmode`   | PRO mode/ Hotel mode   |
+| Sony Hotel Mode   | `com.sony.dtv.b2b.hotelmode`   | PRO mode / Hotel mode  |
 | Sony Service Mode | `com.sony.dtv.servicemode`     | Developer service mode |
 
 ### Sony Diagnostics Services
 
 | App Name                       | Package Name                          | Purpose                  |
-| ------------------------------ | ------------------------------------- | ------------------------ |
+| -------------------------------- | ---------------------------------------- | --------------------------- |
 | Sony Log Level Settings Vendor | `com.sony.dtv.sonyloglevelsettingvnd` | Vendor logging settings  |
 | Sony Log Level Settings System | `com.sony.dtv.sonyloglevelsettingsys` | System logging settings  |
 | Sony Bug Report System         | `com.sony.dtv.sonybugreportsys`       | Bug report service       |
@@ -149,7 +113,7 @@ adb shell pm uninstall --user 0 <package_name>
 ### Sony Applications
 
 | App Name             | Package Name                    | Purpose             |
-| -------------------- | ------------------------------- | ------------------- |
+| ---------------------- | ---------------------------------- | ---------------------- |
 | Vewd Browser         | `com.vewd.core.integration.dia` | Web browser         |
 | Sony Smart Media App | `com.sony.dtv.smartmediaapp`    | Media player        |
 | Sony OSAT Music      | `com.sony.dtv.osat.music`       | Music player        |
@@ -159,15 +123,15 @@ adb shell pm uninstall --user 0 <package_name>
 ### Sony Television Services
 
 | App Name                        | Package Name                            | Purpose              |
-| ------------------------------- | --------------------------------------- | -------------------- |
+| ---------------------------------- | ------------------------------------------ | ----------------------- |
 | Sony TVX Launcher Title List    | `com.sony.dtv.tvxlauncher.titlelist`    | Recorded TV programs |
 | Sony TVX Launcher Program Guide | `com.sony.dtv.tvxlauncher.programguide` | TV program guide     |
 | Sony TVX                        | `com.sony.dtv.tvx`                      | TV core service      |
 
-### Accessability Services
+### Accessibility Services
 
 | App Name                | Package Name                                 | Purpose                |
-| ----------------------- | -------------------------------------------- | ---------------------- |
+| -------------------------- | ----------------------------------------------- | ------------------------- |
 | Sony Accessibility Text | `com.sony.dtv.common.base.AccessibilityText` | Accessibility settings |
 | Google Text-to-Speech   | `com.google.android.tts`                     | Text-to-speech engine  |
 | Google Talkback         | `com.google.android.marvin.talkback`         | Accessibility service  |
@@ -175,14 +139,14 @@ adb shell pm uninstall --user 0 <package_name>
 ### Android Diagnostic Services
 
 | App Name                    | Package Name                            | Purpose                       |
-| --------------------------- | --------------------------------------- | ----------------------------- |
+| ------------------------------ | ------------------------------------------ | -------------------------------- |
 | Google TV Bug Report Sender | `com.google.android.tv.bugreportsender` | Send TV bug reports to Google |
 | Google Feedback             | `com.google.android.feedback`           | Google feedback service       |
 
 ### Android System Services
 
 | App Name                     | Package Name                               | Purpose                       |
-| ---------------------------- | ------------------------------------------ | ----------------------------- |
+| ------------------------------- | --------------------------------------------- | -------------------------------- |
 | Captive Portal Login         | `com.android.captiveportallogin`           | Network captive portal        |
 | VPN Dialogs                  | `com.android.vpndialogs`                   | VPN configuration             |
 | Android Location Fused       | `com.android.location.fused`               | Location services             |
@@ -206,12 +170,17 @@ adb shell pm uninstall --user 0 <package_name>
 ### Google Applications
 
 | App Name             | Package Name                      | Purpose                      |
-| -------------------- | --------------------------------- | ---------------------------- |
+| ---------------------- | ------------------------------------ | ------------------------------- |
 | Google Play Games    | `com.google.android.play.games`   | Google Play Games service    |
 | Google Play Movies   | `com.google.android.videos`       | Google movie service         |
 | Google Partner Setup | `com.google.android.partnersetup` | Google partner configuration |
 
-## 🚫 Script for all apps above
+---
+
+## Uninstall script
+
+Removes all Sony and Google bloatware packages listed above for the current user.  
+Apps can be reinstalled later with `adb shell cmd package install-existing <package_name>`.
 
 ### Windows (cmd)
 
@@ -291,7 +260,8 @@ for %%p in (
 
 ### Linux / macOS (bash)
 
-Save as debloat.sh, chmod +x debloat.sh, then run.
+Save as `debloat.sh`, `chmod +x debloat.sh`, then run.
+
 ```bash
 #!/bin/bash
 packages=(
@@ -368,42 +338,33 @@ for p in "${packages[@]}"; do
 done
 ```
 
-## ➡️ Disable apps
+---
 
-We just want to disable these apps so if we need them again we cant just re-enable them without the need of a computer.
+## Disable instead of uninstall
+
+For apps you may want to keep but hidden, so they cannot be re-enabled from the TV itself:
 
 ```bash
-
 adb shell pm disable-user --user 0 com.google.android.apps.mediashell
-
 adb shell pm disable-user --user 0 com.android.vending
-
 adb shell pm disable-user --user 0 com.google.android.gms
-
 ```
 
-## 🎨 Customizing the Launcher
+---
 
-Disable unwanted tabs and content in your launcher:
+## Launcher cleanup
 
 ```bash
 adb shell settings put secure tv_home_shop_content_enabled 0
 adb shell settings put secure tv_home_personalized_ads_enabled 0
 adb shell settings put secure tv_home_content_suggestions_enabled 0
 adb shell settings put secure tv_home_promotion_tile_enabled 0
-```
-
-Clear the launcher data for changes to apply:
-
-```bash
 adb shell pm clear com.google.android.tvlauncher
 ```
 
 ---
 
-## 🚀 Optimizing System Performance
-
-Apply these settings to enhance responsiveness:
+## Performance tweaks
 
 ```bash
 adb shell setprop persist.sys.input_lag 0
@@ -416,23 +377,21 @@ adb shell pm trim-caches 999999G
 
 ---
 
-## ⚙️ Troubleshooting & Reverting Changes
+## Reverting
 
-### Reinstall apps
+Reinstall a removed app:
 
 ```bash
 adb shell cmd package install-existing <package_name>
 ```
 
-### Reactivate disabled apps
+Re-enable a disabled app:
 
 ```bash
 adb shell pm enable <package_name>
 ```
 
-### Issues after enabling Play Services
-
-Re-enabling Google Play Services may cause extra tabs to reappear. To revert:
+If enabling Google Play Services brings back launcher tabs:
 
 ```bash
 adb shell pm clear com.google.android.tvlauncher
