@@ -126,7 +126,6 @@ adb shell pm uninstall --user 0 <package_name>
 | ---------------------------------- | ------------------------------------------ | ----------------------- |
 | Sony TVX Launcher Title List    | `com.sony.dtv.tvxlauncher.titlelist`    | Recorded TV programs |
 | Sony TVX Launcher Program Guide | `com.sony.dtv.tvxlauncher.programguide` | TV program guide     |
-| Sony TVX                        | `com.sony.dtv.tvx`                      | TV core service      |
 
 ### Accessibility Services
 
@@ -219,7 +218,6 @@ for %%p in (
     com.sony.dtv.b2b.prosettings
     com.sony.dtv.sonyselect
     com.sony.dtv.common.base.AccessibilityText
-    com.sony.dtv.tvx
     com.sony.dtv.discovery
     com.sony.dtv.youview
     com.sony.dtv.promos
@@ -295,7 +293,6 @@ packages=(
     com.sony.dtv.b2b.prosettings
     com.sony.dtv.sonyselect
     com.sony.dtv.common.base.AccessibilityText
-    com.sony.dtv.tvx
     com.sony.dtv.discovery
     com.sony.dtv.youview
     com.sony.dtv.promos
